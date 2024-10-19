@@ -2,6 +2,7 @@ package com.vw.core.controller;
 
 import com.vw.core.constants.StringMassage;
 import com.vw.core.dto.UserDto;
+import com.vw.core.dto.UserProfileDto;
 import com.vw.core.entity.User;
 import com.vw.core.handling.constants.HttpStatusCodeConstants;
 import com.vw.core.handling.dto.ResponseDto;
@@ -31,6 +32,12 @@ public class UserController {
     @GetMapping("/user/{id}")
     public ResponseEntity<ResponseDto> fetchUser(@PathVariable Integer id){
         UserDto fetchedUser = userService.fetchUser(id);
+        return new ResponseEntity<>(new ResponseDto(HttpStatusCodeConstants.SUCCESS, fetchedUser, StringMassage.USER_DETAILS_FOUND), HttpStatus.OK);
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<ResponseDto> fetchUserProfile(@RequestParam String userId){
+        UserProfileDto fetchedUser = userService.fetchUserProfile(userId);
         return new ResponseEntity<>(new ResponseDto(HttpStatusCodeConstants.SUCCESS, fetchedUser, StringMassage.USER_DETAILS_FOUND), HttpStatus.OK);
     }
 

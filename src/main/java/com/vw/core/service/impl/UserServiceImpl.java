@@ -1,6 +1,7 @@
 package com.vw.core.service.impl;
 
 import com.vw.core.dto.UserDto;
+import com.vw.core.dto.UserProfileDto;
 import com.vw.core.entity.User;
 import com.vw.core.constants.StringMassage;
 import com.vw.core.handling.exception.RecordNotFoundException;
@@ -33,5 +34,14 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RecordNotFoundException(String.format(StringMassage.USER_NOT_FOUND+" with ID: "+ id)));
         return modelMapper.map(user, UserDto.class);
+    }
+
+    @Override
+    public UserProfileDto fetchUserProfile(String userId) {
+        User user;
+        if(userId != null && !userId.isEmpty()){
+            user = userRepository.findByUserId(userId);
+        }else throw new RecordNotFoundException(String.format(StringMassage.USER_NOT_FOUND+" with userId: "+ userId));
+        return modelMapper.map(user, UserProfileDto.class);
     }
 }

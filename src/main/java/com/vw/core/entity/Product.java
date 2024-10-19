@@ -31,8 +31,8 @@ public class Product {
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
-    @Column(name = "category")
-    private String category;
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category_id;
 
 }
