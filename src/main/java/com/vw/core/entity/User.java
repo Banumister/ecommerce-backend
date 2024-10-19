@@ -15,11 +15,11 @@ import lombok.NoArgsConstructor;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @Column(name = "userId")
+    @Column(name = "userId", unique = true, nullable = false)
     private String userId;
 
     @Column(name = "firstName")
@@ -33,4 +33,12 @@ public class User {
 
     @Column(name = "gender")
     private char gender;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_details_id", referencedColumnName = "id")
+    private UserContactDetails contact_details_id;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private UserAddress address_id;
 }
