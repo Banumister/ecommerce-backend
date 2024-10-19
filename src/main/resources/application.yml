@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    # JDBC driver class for MySQL
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # Database connection password
+    password: root
+    # Database connection URL
+    url: jdbc:mysql://localhost:3306/ecommerce
+    # Database username
+    username: root
+
+  jpa:
+    # Strategy for handling the database schema
+    hibernate:
+      # Automatically create the database schema
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        # Hibernate dialect for MySQL
+        dialect: org.hibernate.dialect.MySQLDialect
+
+    # Show SQL statements in the console
+    show-sql: true

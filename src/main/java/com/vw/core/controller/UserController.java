@@ -1,13 +1,14 @@
 package com.vw.core.controller;
 
+import com.vw.core.constants.StringMassage;
 import com.vw.core.dto.UserDto;
 import com.vw.core.entity.User;
+import com.vw.core.handling.constants.HttpStatusCodeConstants;
+import com.vw.core.handling.dto.ResponseDto;
 import com.vw.core.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -27,5 +28,10 @@ public class UserController {
     }
 
 
+    @GetMapping("/user/{id}")
+    public ResponseEntity<ResponseDto> fetchUser(@PathVariable Integer id){
+        UserDto fetchedUser = userService.fetchUser(id);
+        return new ResponseEntity<>(new ResponseDto(HttpStatusCodeConstants.SUCCESS, fetchedUser, StringMassage.USER_DETAILS_FOUND), HttpStatus.OK);
+    }
 
 }

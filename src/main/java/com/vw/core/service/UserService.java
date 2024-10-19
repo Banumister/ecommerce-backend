@@ -6,4 +6,6 @@ import com.vw.core.entity.User;
 public interface UserService {
 
     User saveUser(UserDto userDto);
+
+    UserDto fetchUser(Integer id);
 }
