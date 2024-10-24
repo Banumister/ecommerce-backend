@@ -10,4 +10,4 @@ RUN apt-get update && apt-get install wget -y
 RUN mkdir /usr/app
 WORKDIR /usr/app
 #RUN cd workspace
-COPY /ecommerce-backend/target/ecommrece-application-backend-0.0.1-SNAPSHOT.jar /usr/app
+COPY . /app/
